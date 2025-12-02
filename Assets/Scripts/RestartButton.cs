@@ -7,8 +7,6 @@ public class RestartButton : MonoBehaviour
 {
     public TMP_Text buttonText;
 
-    public GameObject player;
-
     private void Start()
     {
 
@@ -16,9 +14,10 @@ public class RestartButton : MonoBehaviour
     }
     public void Restart()
     {
-        LevelManager.instance.playerHealth = 3;
-        player.transform.position = LevelManager.instance.playerRespawnPosition;
+        LevelManager.instance.maxPlayerHealth -= 5;
+        LevelManager.instance.playerHealth = LevelManager.instance.maxPlayerHealth;
+        LevelManager.instance.player.transform.position = LevelManager.instance.playerRespawnPosition;
 
-
+        LevelManager.instance.enemy.transform.position = LevelManager.instance.enemyRespawnPosition;
     }
 }

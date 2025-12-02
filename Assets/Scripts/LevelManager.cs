@@ -1,11 +1,16 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
-    private int highScore;
     public GameObject player;
+    public GameObject enemy;
     public Vector3 playerRespawnPosition;
+    public Vector3 enemyRespawnPosition;
+    public float maxPlayerHealth = 100;
+    public TMP_Text healthText;
 
     public float playerHealth;
     void Awake()
@@ -27,17 +32,28 @@ public class LevelManager : MonoBehaviour
     {
         if(playerHealth <= 0)
         {
-            playerHealth = 100;
+            maxPlayerHealth -= 10;
+            playerHealth = maxPlayerHealth;
             player.transform.position = playerRespawnPosition;
         }
     }
 
-    public void SetHighScore(int score)
+    public void ReturnToMenu()
     {
-        highScore = score;
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
+        }
     }
-    public int GetHighScore()
+
+    public void DisplayHealth()
     {
-        return highScore;
+        float health = playerHealth;
+        float maxHealth = maxPlayerHealth;
+
+        healthText.text = health.ToString() + " / " + maxHealth.ToString();
+
     }
+
+
 }
