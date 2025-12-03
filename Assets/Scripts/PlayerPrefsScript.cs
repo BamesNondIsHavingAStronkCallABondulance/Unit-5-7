@@ -1,17 +1,18 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class PlayerPrefsScript : MonoBehaviour
 {
 
     public static int hiScore = 0;
     public static int timesPlayed;
+    public static int volume;
+    public Slider volumeSlider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
-        // Before reading the key, check to see if a value has been stored in it.
         if (PlayerPrefs.HasKey("hiScore") == true)
         {
             hiScore = PlayerPrefs.GetInt("hiScore");
@@ -30,6 +31,17 @@ public class PlayerPrefsScript : MonoBehaviour
         else
         {
             PlayerPrefs.SetInt("timesPlayed", 1);
+        }
+
+        if (PlayerPrefs.HasKey("volume") == true)
+        {
+            volume = PlayerPrefs.GetInt("volume");
+            
+            PlayerPrefs.SetInt("volume", 2);
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("volume", 1f);
         }
     }
 
