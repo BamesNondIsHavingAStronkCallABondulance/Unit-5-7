@@ -10,7 +10,6 @@ public class LevelManager : MonoBehaviour
     public Vector3 playerRespawnPosition;
     public Vector3 enemyRespawnPosition;
     public float maxPlayerHealth = 100;
-    public TMP_Text healthText;
 
     public float playerHealth;
     void Awake()
@@ -45,15 +44,5 @@ public class LevelManager : MonoBehaviour
             SceneManager.LoadScene(0);
         }
     }
-
-    public void DisplayHealth()
-    {
-        float health = playerHealth;
-        float maxHealth = maxPlayerHealth;
-
-        healthText.text = health.ToString() + " / " + maxHealth.ToString();
-
-    }
-
 
 }

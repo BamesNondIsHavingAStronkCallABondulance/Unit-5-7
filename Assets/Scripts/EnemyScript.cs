@@ -7,6 +7,7 @@ public class EnemyScript : MonoBehaviour
     public Transform player;
     public float trackDistance = 40;
     public float speed = 2;
+    public float screenBrightness;
     void Start()
     {
         LevelManager.instance.enemyRespawnPosition = LevelManager.instance.enemy.transform.position;

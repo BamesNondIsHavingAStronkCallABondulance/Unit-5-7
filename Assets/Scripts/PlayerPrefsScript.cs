@@ -8,12 +8,11 @@ public class PlayerPrefsScript : MonoBehaviour
 
     public static int hiScore = 0;
     public static int timesPlayed;
-    public static int volume;
-    public Slider volumeSlider;
+    public static int musicVolume;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (PlayerPrefs.HasKey("hiScore") == true)
+        if (PlayerPrefs.HasKey("hiScore") == true)  //Setting high score
         {
             hiScore = PlayerPrefs.GetInt("hiScore");
         }
@@ -22,7 +21,7 @@ public class PlayerPrefsScript : MonoBehaviour
             PlayerPrefs.SetInt("hiScore", 10);
         }
 
-        if (PlayerPrefs.HasKey("timesPlayed") == true)
+        if (PlayerPrefs.HasKey("timesPlayed") == true) //Counting how many times the game has been played
         {
             timesPlayed = PlayerPrefs.GetInt("timesPlayed");
             timesPlayed += 1;
@@ -33,15 +32,22 @@ public class PlayerPrefsScript : MonoBehaviour
             PlayerPrefs.SetInt("timesPlayed", 1);
         }
 
-        if (PlayerPrefs.HasKey("volume") == true)
+        if (PlayerPrefs.HasKey("musicVolume") == true)
         {
-            volume = PlayerPrefs.GetInt("volume");
-            
-            PlayerPrefs.SetInt("volume", 2);
+            AudioManager.instance.musicVolume = PlayerPrefs.GetFloat("musicVolume");
         }
         else
         {
-            PlayerPrefs.SetFloat("volume", 1f);
+            PlayerPrefs.SetFloat("musicVolume", 0.5f);
+        }
+
+        if (PlayerPrefs.HasKey("sfxVolume") == true)
+        {
+            AudioManager.instance.sfxVolume = PlayerPrefs.GetFloat("sfxVolume");
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("sfxVolume", 0.5f);
         }
     }
 

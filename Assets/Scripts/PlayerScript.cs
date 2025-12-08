@@ -8,7 +8,6 @@ public class PlayerScript : MonoBehaviour
     public Rigidbody rb;
     public GameObject player;
     public static int score;
-    public TMP_Text scoreText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -47,9 +46,7 @@ public class PlayerScript : MonoBehaviour
 
         LevelManager.instance.HealthCheck();
         LevelManager.instance.ReturnToMenu();
-        LevelManager.instance.DisplayHealth();
         ModifyScore();
-        DisplayScore();
     }
 
     private void OnGUI()
@@ -58,36 +55,41 @@ public class PlayerScript : MonoBehaviour
 
         string text = "High score: " + score;
 
-        text += "\nThis is more text";
-
         GUI.contentColor = Color.wheat;
         GUILayout.BeginArea(new Rect(10f, 50f, 1600f, 1600f));
         GUILayout.Label($"<size=24>{text}</size>");
         GUILayout.EndArea();
+
+        string phealth = LevelManager.instance.playerHealth.ToString();
+        string pmaxhealth = LevelManager.instance.maxPlayerHealth.ToString();
+
+        GUI.contentColor = Color.lemonChiffon;
+        GUILayout.BeginArea(new Rect(50f, 500f, 1600f, 1600f));
+        GUILayout.Label($"<size=48>{phealth + " / " + pmaxhealth}</size>");
+        GUILayout.EndArea();
+
+        string scoretext = PlayerScript.score.ToString();
+
+        GUI.contentColor = Color.bisque;
+        GUILayout.BeginArea(new Rect(1100f, 50f, 1600f, 1600f));
+        GUILayout.Label($"<size=36>{scoretext}</size>");
+        GUILayout.EndArea();
     }
 
-    void ModifyScore()
+    static void ModifyScore()
     {
-        if (Input.GetKeyDown(KeyCode.Minus))
+        if(Input.GetKeyDown(KeyCode.Equals))
+        {
+            score += 10;
+            if (score >= PlayerPrefsScript.hiScore)
+            {
+                PlayerPrefs.SetInt("hiScore", score);
+            }
+        }
+
+        if(Input.GetKeyDown(KeyCode.Minus))
         {
             score -= 10;
         }
-        if (Input.GetKeyDown(KeyCode.Equals))
-        {
-            score += 10;
-        }
-
-        if (score >= PlayerPrefsScript.hiScore)
-        {
-            PlayerPrefs.SetInt("hiScore", score);
-        }
-    }
-
-    public void DisplayScore()
-    {
-        float health = score;
-
-        scoreText.text = health.ToString();
-
     }
 }

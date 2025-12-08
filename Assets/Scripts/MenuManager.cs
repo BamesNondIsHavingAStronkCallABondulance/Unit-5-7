@@ -1,35 +1,15 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
 public class MenuManager : MonoBehaviour
 {
-    public Slider nothingness;
 
-    private void Start()
+    // Update is called once per frame
+    void Update()
     {
-    }
 
-    public void LevelOneLoad()
-    {
-        SceneManager.LoadScene(1);
-    }
-    public void LevelTwoLoad()
-    {
-        SceneManager.LoadScene(2);
-    }
-    public void LevelThreeLoad()
-    {
-        SceneManager.LoadScene(3);
-    }
-    public void CloseGame()
-    {
-        Application.Quit();
-    }
-    public void Nothingness()
-    {
-        if (nothingness.value == 1)
-        {
-            CloseGame();
-        }
+        AudioManager.instance.ChangeAudioSourceVolume("MainMenuMusic", AudioManager.instance.musicVolume);
+
+        AudioManager.instance.ChangeAudioSourceVolume("ButtonPressWah", AudioManager.instance.sfxVolume);
+
     }
 }

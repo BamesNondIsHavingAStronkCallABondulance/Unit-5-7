@@ -1,8 +1,13 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Sound 
 {
+
+    public AudioSource source;
+
+
     public string name;
     public AudioClip clip;
     [Range(0f, 1f)]
@@ -12,8 +17,4 @@ public class Sound
     public float pitch;
 
     public bool loop;
-
-    [HideInInspector]
-    public AudioSource source;
-
 }
