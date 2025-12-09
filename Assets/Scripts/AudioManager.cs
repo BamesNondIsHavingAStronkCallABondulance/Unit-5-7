@@ -8,6 +8,8 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
 
+
+
     public Sound[] sounds;
     public float musicVolume, sfxVolume;
 
@@ -45,6 +47,7 @@ public class AudioManager : MonoBehaviour
     {
         ChangeMusicVolume(PlayerPrefs.GetFloat("musicVolume"));
         ChangeSFXVolume(PlayerPrefs.GetFloat("sfxVolume"));
+
         PlayClip("MainMenuMusic");
         PlayClip("ButtonPressWah");
     }
@@ -66,9 +69,9 @@ public class AudioManager : MonoBehaviour
         musicVolume = volume;
     }
 
-    public void ChangeSFXVolume(float SFXVolume)
+    public void ChangeSFXVolume(float volume)
     {
-        sfxVolume = SFXVolume;
+        sfxVolume = volume;
     }
 
     public void ChangeAudioSourceVolume(string name, float vol)

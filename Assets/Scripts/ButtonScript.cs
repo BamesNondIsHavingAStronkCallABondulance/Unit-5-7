@@ -11,6 +11,7 @@ public class ButtonScript : MonoBehaviour
         AudioManager.instance.StopClip("MainMenuMusic");
         SceneManager.LoadScene(1);
         AudioManager.instance.PlayClip("Level1Loop");
+        AudioManager.instance.ChangeAudioSourceVolume("Level1Loop", AudioManager.instance.musicVolume);
     }
     public void LevelTwoLoad()
     {
